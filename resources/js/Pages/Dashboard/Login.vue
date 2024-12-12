@@ -18,12 +18,12 @@ const form = useForm({
 
 <template>
 
-    <Head :title="$page.url.startsWith('/admin') ? 'Admin Login' : 'Merchant Login'" />
+    <Head title="Admin Login" />
     <section class="container mx-auto  flex items-center justify-center font-roboto">
         <AuthFormContainer>
             <form @submit.prevent="form.post(route('login'))" class="w-full space-y-6">
                 <h1 class="text-center text-2xl text-dark mb-5 font-bold">
-                    {{ $page.url.startsWith('/admin') ? "Admin" : "Merchant" }} Dashboard Login
+                   Admin Dashboard Login
                 </h1>
 
                 <div v-if="status"

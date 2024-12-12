@@ -7,7 +7,6 @@
             class="relative flex flex-col items-center md:min-h-[500px] justify-between px-10 py-10 bg-white border rounded-sm shadow-md md:flex-row md:px-5 md:w-[1000px]"
         >
             <img
-                v-show="$page.url === '/admin/login'"
                 src="/admin-login2.jpg"
                 alt="admin-login"
                 class="w-full md:w-1/2"
