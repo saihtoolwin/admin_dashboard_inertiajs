@@ -1,8 +1,8 @@
 <template>
-    <header class="bg-white h-[70px] mx-3 my-1 rounded-lg sticky top-0 z-50 w-full">
+    <header class="bg-white  mx-3 my-1 rounded-lg sticky top-0 z-50">
         <!-- Header Content -->
-        <div class="flex justify-between h-full">
-            <div class="items-center flex justify-center h-full ml-5">
+        <div class="flex justify-between h-full py-3">
+            <div class="items-center flex  ml-5">
                 <span class="mdi mdi-backburger text-2xl text-gray-500"></span>
             </div>
             <!-- Dropdown Wrapper -->
@@ -31,10 +31,10 @@
                 <div 
                     ref="toggleBtn"
                     @click="toggleDropDown" 
-                    class="flex items-center cursor-pointer"
+                    class="flex items-center cursor-pointer mr-4"
                 >
                     <span class="mdi mdi-cog text-2xl text-gray-500"></span>
-                    <img src="/spidercold.jpg" class="w-12 h-12 mx-4 rounded-xl" alt="">
+                    <img src="/spidercold.jpg" class="w-14 h-14 mx-4 rounded-xl" alt="">
                     <div>
                         <p class="text-base">Sai Htoo Lwin</p>
                         <p class="text-sm text-gray-400">Admin</p>

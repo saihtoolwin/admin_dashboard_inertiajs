@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\LoginController;
+use App\Http\Controllers\Dashboard\OverviewController;
 use App\Http\Controllers\DashBoard\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -13,7 +14,7 @@ Route::prefix('admin')
         });
 
         Route::middleware(['auth', 'permission-gates'])->group(function () {
-            Route::get('/dashboard', fn() => Inertia::render('Dashboard/Home'))
+            Route::get('/dashboard',OverviewController::class)
                 ->name('dashboard');
 
             // Users Management Routes

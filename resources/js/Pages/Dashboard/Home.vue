@@ -35,6 +35,8 @@ import { Head } from '@inertiajs/vue3';
         <DashboardSidebar/>
         <!-- Header -->
         <DashboardHeader/>
+        <!-- Page Content -->
+         
     </div>
 </template>
 
