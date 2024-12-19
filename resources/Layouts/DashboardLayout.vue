@@ -30,7 +30,7 @@ import { Head } from '@inertiajs/vue3';
 </template> -->
 <template>
     <Head title="Dashboard" />
-    <div class="bg-background max-h-screen flex overflow-hidden">
+    <div class="bg-background min-h-screen flex overflow-hidden">
         <!-- SideBar -->
         <DashboardSidebar/>
 
@@ -38,8 +38,8 @@ import { Head } from '@inertiajs/vue3';
             <!-- Header -->
             <DashboardHeader/>
             <!-- Page Content -->
-            <section class="p-3.5 h-full">
-                <div class="bg-white p-4 rounded-lg max-h-screen">
+            <section class="p-3">
+                <div class="bg-white p-4 rounded-lg h-[83vh]">
                     <slot />
                 </div>
             </section>
