@@ -1,5 +1,5 @@
 <template>
-    <div class="space-y-5">
+    <div class="space-y-5 bg-white p-4 rounded-lg">
         Hello
     </div>
 </template>

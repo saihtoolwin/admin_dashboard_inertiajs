@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class RoleController extends Controller
 {
@@ -11,7 +13,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::with('permissions')->paginate(request('per_page', 10));
+
+        return Inertia::render('Dashboard/Roles/Index', ['roles' => $roles]);
     }
 
     /**

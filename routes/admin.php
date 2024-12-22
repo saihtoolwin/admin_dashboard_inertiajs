@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\LoginController;
 use App\Http\Controllers\Dashboard\OverviewController;
 use App\Http\Controllers\DashBoard\UserController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -24,6 +25,11 @@ Route::prefix('admin')
                 ->group(function () {
                     Route::get('/', 'index')->name('index');
                 });
+
+            // Roles Management
+            Route::prefix('roles')->name('roles.')->controller(RoleController::class)->group(function(){
+                Route::get('/','index')->name('index');
+            });
         });
     });
 

@@ -22,7 +22,8 @@ class UserController extends Controller
     public function index()
     {
         abort_if(Gate::denies("user_access"), HttpFoundationResponse::HTTP_FORBIDDEN,"403 Forbidden");
-        $users = $this->users->with('roles')->get();
+        $users = $this->users->with('roles')->sortBy(request('sort', 'id'), request('direction', 'desc'))
+            ->paginate(request('per_page', 10))->withQueryString();;
         // dd($users);
         return Inertia::render('Dashboard/UserManagement/Index',compact('users'));
     }

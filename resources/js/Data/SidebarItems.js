@@ -1,15 +1,18 @@
 import can from "@/Helpers/Can";
 import { usePage } from "@inertiajs/vue3";
 
-function getSidebarItems(){
+export default function getSidebarItems(){
+    console.log(usePage().url);
     return [
         {
+            title : 'Dashboard ',
+            allow : true,
             items: [
                 {
                     name: 'Dashboard',
                     icon: 'mdi-view-dashboard',
                     route: route('admin.dashboard'),
-                    active: usePage().url==='/admin/dashboard',
+                    active: usePage().url.startsWith('/admin/dashboard'),
                     allow:true,
                     subitems: []
                 },
@@ -23,14 +26,22 @@ function getSidebarItems(){
                     name: 'User Management',
                     icon: 'mdi-account-group',
                     route: route('admin.users-management.index'),
-                    active: usePage().url==='/admin/users-management/',
+                    active: usePage().url.startsWith('/admin/users-management'),
                     allow : can('user_access'),
                     subitems: []
                 },
+                {
+                    name: 'Roles Management',
+                    icon: 'mdi-account-reactivate-outline',
+                    route: route('admin.roles.index'),
+                    active: usePage().url.startsWith('/admin/roles'),
+                    allow : can('role_access'),
+                    subitems: []
+                },
             ]
-        }
+        },
     ]
 }
 
 
-export default getSidebarItems;
+//  getSidebarItems;

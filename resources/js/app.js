@@ -13,14 +13,12 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: async (name) =>{
-        console.log(name);
         let page = await resolvePageComponent(
             `./Pages/${name}.vue`,
             import.meta.glob('./Pages/**/*.vue'),
         );
 
         page = page.default;
-        console.log(page);
         if (name === '503') {
             page.layout = null;
         } else {
