@@ -22,6 +22,6 @@ defineProps({
     >
         {{ label }}
 
-        <span v-if="required" class="text-primary">*</span>
+        <span v-if="required" class="text-red-500">*</span>
     </label>
 </template>
