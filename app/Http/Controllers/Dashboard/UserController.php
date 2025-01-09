@@ -4,6 +4,7 @@ namespace App\Http\Controllers\DashBoard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,15 +26,16 @@ class UserController extends Controller
     {
         abort_if(Gate::denies("user_access"), HttpFoundationResponse::HTTP_FORBIDDEN,"403 Forbidden");
         $users = $this->users->with('roles')->sortBy(request('sort', 'id'), request('direction', 'desc'))
-            ->paginate(request('per_page', 10))->withQueryString();;
-        // dd($users);
+            ->paginate(request('per_page', 10))->withQueryString();
         return Inertia::render('Dashboard/UserManagement/Index',compact('users'));
     }
 
     public function create()
     {
         abort_if(Gate::denies("user_create"), HttpFoundationResponse::HTTP_FORBIDDEN,"403 Forbidden");
-        return Inertia::render('Dashboard/UserManagement/Create');
+        $roles = Role::pluck('title','id');
+        // dd($roles);
+        return Inertia::render('Dashboard/UserManagement/Create',compact('roles'));
     }
 
     public function store(StoreUserRequest $request)
@@ -46,7 +48,24 @@ class UserController extends Controller
             // Hash::make($request->password)
             'password' =>  Hash::make($request->password),
         ]);
-        $user->roles()->attach(1);
-        return Inertia::render('Dashboard/UserManagement/Create');
+        $user->roles()->attach($request->role);
+        return to_route('admin.users-management.index');
+    }
+
+
+    public function edit(User $user)
+    {
+        abort_if(Gate::denies("user_edit"), HttpFoundationResponse::HTTP_FORBIDDEN,"403 Forbidden");
+       $user->load('roles');
+       $roles = Role::pluck('title','id');
+        return Inertia::render('Dashboard/UserManagement/Edit',compact('user','roles'));
+    }
+
+    public function update(UpdateUserRequest $request,User $user)
+    {
+        abort_if(Gate::denies("user_edit"), HttpFoundationResponse::HTTP_FORBIDDEN,"403 Forbidden");
+        $user->update($request->only(['name', 'email']));
+
+        return redirect()->route('admin.users-management.index');
     }
 }

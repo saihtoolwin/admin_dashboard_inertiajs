@@ -8,7 +8,7 @@
             <!-- Header -->
             <DashboardHeader/>
             <!-- Page Content -->
-            <section class="p-3 h-[83vh]">
+            <section class="p-3 h-[83vh] overflow-x-scroll">
                 <!-- <div class=" p-4 rounded-lg "> -->
                     <slot />
                 <!-- </div> -->

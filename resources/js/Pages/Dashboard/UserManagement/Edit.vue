@@ -8,6 +8,10 @@ defineProps({
     roles : {
         type : Object,
         required : true
+    },
+    user:{
+        type : Object,
+        required : true
     }
 })
 
@@ -15,17 +19,17 @@ defineProps({
 
 
 <template>
-    <Head title="Add User" />
+    <Head title="Edit User" />
 
     <div>
         <div class="space-y-5">
             <div class="flex items-center w-full">
                 <Breadcrumb icon="mdi-account-group" label="Users" :href="route('admin.users-management.index')">
-                    <BreadcrumbItem label="Create" />
+                    <BreadcrumbItem label="Edit" />
                 </Breadcrumb>
             </div>
 
-            <UserManagementForm :roles="roles" />
+            <UserManagementForm :isEditMode="true" :roles="roles" :user="user" />
         </div>
     </div>
 </template>

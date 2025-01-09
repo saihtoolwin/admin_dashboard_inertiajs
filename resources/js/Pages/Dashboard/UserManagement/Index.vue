@@ -48,6 +48,7 @@
                                 sort="email"
                                 :url="userListRoute"
                             />
+                            <TableHeaderCell label="Roles" />
                             <TableHeaderCell label="Actions" />
                         </template>
 
@@ -66,21 +67,20 @@
                                 </div>
                             </TableDataCell>
                             <TableDataCell>{{ item.email }}</TableDataCell>
-                            <TableDataCell class="min-w-[150px]">{{
+                            <TableDataCell>{{ item.roles[0].title }}</TableDataCell>
+                            <!-- <TableDataCell class="min-w-[150px]">{{
                                 item.phone_number
-                            }}</TableDataCell>
+                            }}</TableDataCell> -->
                             <!-- <TableDataCell>{{ item.user_profile?.date_of_birth || '-' }}</TableDataCell> -->
 
                             <!-- Actions: Edit and Delete -->
                             <TableActionCell
-                                v-if="
-                                    can('users.update') || can('users.delete')
-                                "
+                               
                             >
                                 <InertiaLinkButton
-                                    v-if="can('users.update')"
+                                   
                                     :href="
-                                        route('admin.user-management.edit', {
+                                        route('admin.users-management.edit', {
                                             user: item?.id,
                                         })
                                     "
