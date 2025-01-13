@@ -99,6 +99,7 @@ watch(
                         name="role"
                         placeholder="Select a role"
                        :selected="form.role"
+                       :disabled="isEditMode"
                     />
                     <ValidationError :message="form.errors?.role" />
                 </div>

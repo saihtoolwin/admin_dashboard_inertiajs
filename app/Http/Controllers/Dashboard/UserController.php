@@ -25,7 +25,7 @@ class UserController extends Controller
     public function index()
     {
         abort_if(Gate::denies("user_access"), HttpFoundationResponse::HTTP_FORBIDDEN,"403 Forbidden");
-        $users = $this->users->with('roles')->sortBy(request('sort', 'id'), request('direction', 'desc'))
+        $users = $this->users->with('roles')->search(request(['search']))->sortBy(request('sort', 'id'), request('direction', 'desc'))
             ->paginate(request('per_page', 10))->withQueryString();
         return Inertia::render('Dashboard/UserManagement/Index',compact('users'));
     }
@@ -49,6 +49,7 @@ class UserController extends Controller
             'password' =>  Hash::make($request->password),
         ]);
         $user->roles()->attach($request->role);
+        session()->flash('success', 'User created successfully!');
         return to_route('admin.users-management.index');
     }
 
@@ -66,6 +67,13 @@ class UserController extends Controller
         abort_if(Gate::denies("user_edit"), HttpFoundationResponse::HTTP_FORBIDDEN,"403 Forbidden");
         $user->update($request->only(['name', 'email']));
 
+        return redirect()->route('admin.users-management.index');
+    }
+
+    public function destroy(User $user)
+    {
+        abort_if(Gate::denies("user_delete"), HttpFoundationResponse::HTTP_FORBIDDEN,"403 Forbidden");
+        $user->delete(); 
         return redirect()->route('admin.users-management.index');
     }
 }

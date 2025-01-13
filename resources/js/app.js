@@ -7,6 +7,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import DashboardLayout from '../Layouts/DashboardLayout.vue'
+import Toaster from "@meforma/vue-toaster";
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -48,6 +49,11 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(Toaster,{
+                position: 'bottom-right',
+                useDefaultCss: true,
+                maxToasts: 3,
+            })
             .mount(el);
     },
     progress: {

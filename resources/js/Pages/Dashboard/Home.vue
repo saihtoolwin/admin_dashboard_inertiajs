@@ -30,7 +30,7 @@ import { Head } from '@inertiajs/vue3';
 </template> -->
 <template>
     <Head title="Dashboard" />
-    <div class="bg-background min-h-screen flex">
+    <div class="bg-background min-h-screen flex font-roboto">
         <!-- SideBar -->
         <DashboardSidebar/>
         <!-- Header -->

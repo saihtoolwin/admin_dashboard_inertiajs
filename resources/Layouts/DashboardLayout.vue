@@ -16,12 +16,14 @@
         </main>
         
     </div>
+    <FlashMessages/>
 </template>
 
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import DashboardSidebar from '@/Layouts/Components/DashboardSidebar.vue';
 import DashboardHeader from '@/Layouts/Components/DashboardHeader.vue';
+import FlashMessages from '@/Components/Global/FlashMessages.vue';
 </script>
 
 <style scoped>

@@ -28,6 +28,7 @@ Route::prefix('admin')
                     Route::post('/store', 'store')->name('store');
                     Route::get('/edit/{user}', 'edit')->name('edit');
                     Route::put('/update/{user}', 'update')->name('update');
+                    Route::delete('/delete/{user}','destroy')->name('delete');
                 });
 
             // Roles Management

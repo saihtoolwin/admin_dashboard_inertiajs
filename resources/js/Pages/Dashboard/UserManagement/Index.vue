@@ -13,9 +13,9 @@
         >
             <template #actions>
                 <div
-                    class="flex justify-end"
+                    class="flex justify-between"
                 >
-                    <!-- <DashboardTableDataSearchBox class="w-full mt-5 md:mt-0" placeholder="Search users" :href="userListRoute" /> -->
+                    <DashboardTableDataSearchBox class="w-full mt-5 md:mt-0" placeholder="Search users" :href="userListRoute" />
                         <!-- <InertiaLinkButton v-if="can('customers.create')" :href="route('admin.customers.create')" class="items-start !rounded-md bg-primary text-white !text-sm !px-3 ">
                                     <i class="mdi mdi-plus"></i>
                                     Add Customer
@@ -23,7 +23,7 @@
                         <InertiaLinkButton
                             v-if="can('user_create')"
                             :href="route('admin.users-management.create')"
-                            class="items-start !rounded-md bg-primary text-white !text-sm !px-3"
+                            class="items-start !rounded-md bg-primary text-white !text-sm !px-3 "
                         >
                             <i class="mdi mdi-plus"></i> Add User
                         </InertiaLinkButton>
@@ -90,10 +90,9 @@
                                     <i class="mdi mdi-file-edit"></i>
                                 </InertiaLinkButton>
                                 <NormalButton
-                                    v-if="can('users.delete')"
                                     @click="deleteCustomer(item)"
                                     tooltip="Delete"
-                                    class="bg-red-600 !shadow-none !px-3 !py-2 text-white rounded-md"
+                                    class="bg-red-600 hover:cursor-pointer !shadow-none !px-3 !py-2 text-white rounded-md"
                                 >
                                     <i class="mdi mdi-delete"></i>
                                 </NormalButton>
@@ -107,7 +106,7 @@
 </template>
 
 <script setup>
-import { Head } from "@inertiajs/vue3";
+import { Head, router } from "@inertiajs/vue3";
 import Breadcrumb from "@/Components/Molecules/Breadcrumb.vue";
 import BreadcrumbItem from "@/Components/Atoms/BreadcrumbItem.vue";
 import TableContainer from "@/Components/Molecules/TableContainer.vue";
@@ -119,7 +118,10 @@ import TableHeaderCell from "@/Components/Molecules/TableHeaderCell.vue";
 import Table from "@/Components/Commons/Table.vue";
 import can from "@/Helpers/Can";
 import InertiaLinkButton from "@/Components/Atoms/InertiaLinkButton.vue";
+import DashboardTableDataSearchBox from "@/Components/Commons/DashboardTableDataSearchBox.vue"
+import { createToaster } from "@meforma/vue-toaster";
 
+const toaster = createToaster();
 defineProps({
     users: {
         type: Object,
@@ -128,6 +130,17 @@ defineProps({
 });
 
 const userListRoute = route("admin.users-management.index");
+
+function deleteCustomer (user){
+    
+
+    router.delete(route('admin.users-management.delete',{user : user}),{
+        onSuccess :()=>{
+            toaster.success("User Deleted Successfully!");
+        }
+    });
+
+}
 </script>
 
 <style scoped></style>
